@@ -47,12 +47,6 @@ workflows:
     
 app:
   envs:
-  - BITRISE_PROJECT_PATH: Bitrise_Swift
-    opts:
-      is_expand: false
-  - BITRISE_SCHEME: Bitrise_Swift
-    opts:
-      is_expand: false
-  - BITRISE_DISTRIBUTION_METHOD: app-store
-    opts:
-      is_expand: false
+    - BITRISE_PROJECT_PATH: Bitrise_Swift
+    - BITRISE_SCHEME: Bitrise_Swift
+    - BITRISE_DISTRIBUTION_METHOD: app-store
