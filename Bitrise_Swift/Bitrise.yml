@@ -1,0 +1,58 @@
+format_version: '8'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+workflows:
+  release:
+    steps:
+      # SSH 키 활성화 (필요한 경우)
+      - activate-ssh-key@4: {}
+
+      # Git 리포지토리 클론
+      - git-clone@8: {}
+
+      # 캐시 복원 (선택 사항)
+      - restore-spm-cache@2: {}
+
+      # Xcode 프로젝트 설정
+      - recreate-user-schemes@1:
+          inputs:
+            project_path: "$BITRISE_PROJECT_PATH"
+
+      # 테스트 실행
+      - xcode-test@2:
+          inputs:
+            project_path: "$BITRISE_PROJECT_PATH"
+            scheme: "$BITRISE_SCHEME"
+            destination: "platform=iOS Simulator,name=iPhone 14"
+
+      # Xcode 아카이브 및 서명
+      - xcode-archive@4:
+          inputs:
+            project_path: "$BITRISE_PROJECT_PATH"
+            scheme: "$BITRISE_SCHEME"
+            export_method: app-store
+            automatic_code_signing: api-key
+
+      # TestFlight 업로드
+      - deploy-to-itunesconnect-application-loader@1:
+          inputs:
+            connection: api-key
+
+      # Bitrise에서 아티팩트 배포 (선택 사항)
+      - deploy-to-bitrise-io@2: {}
+
+    after_run:
+      # 캐시 저장 (선택 사항)
+      - save-spm-cache@1: {}
+    
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: Bitrise_Swift
+    opts:
+      is_expand: false
+  - BITRISE_SCHEME: Bitrise_Swift
+    opts:
+      is_expand: false
+  - BITRISE_DISTRIBUTION_METHOD: app-store
+    opts:
+      is_expand: false
