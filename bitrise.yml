@@ -40,7 +40,7 @@ workflows:
         inputs:
         - perform_clean_action: yes
         - project_path: $BITRISE_PROJECT_PATH
-        - scheme: $BITRISE_SCHEME
+        # - scheme: $BITRISE_SCHEME
         - export_method: app-store
         - codesigning_auth_source: apple-id
         - distribution_method: $BITRISE_DISTRIBUTION_METHOD
