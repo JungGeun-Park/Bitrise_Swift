@@ -6,8 +6,8 @@ app:
   - BITRISE_PROJECT_PATH: Bitrise_Swift.xcodeproj
   - BITRISE_SCHEME: Bitrise_Swift
   - BITRISE_DISTRIBUTION_METHOD: app-store
-  - BITRISE_CERTIFICATE_URL: distribution.p12
-  - BITRISE_PROVISIONING_PROFILE_URL: profile.mobileprovision
+  - BITRISE_CERTIFICATE_URL: file:///distribution.p12
+  - BITRISE_PROVISIONING_PROFILE_URL: file:///profile.mobileprovision
   - APPLE_ID: puzznic@inka.co.kr
   - APPLE_APP_SPECIFIC_PASSWORD: qbrz-hmfz-robj-eohm
 
