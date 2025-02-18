@@ -6,8 +6,6 @@ app:
   - BITRISE_PROJECT_PATH: Bitrise_Swift.xcodeproj
   - BITRISE_SCHEME: Bitrise_Swift
   - BITRISE_DISTRIBUTION_METHOD: app-store
-  - BITRISE_CERTIFICATE_URL: file://./Bitrise_Swift/distribution.p12  # 절대 경로 사용
-  - BITRISE_PROVISIONING_PROFILE_URL: file://./Bitrise_Swift/profile.mobileprovision  # 절대 경로 사용
   - APPLE_ID: puzznic@inka.co.kr
   - APPLE_APP_SPECIFIC_PASSWORD: qbrz-hmfz-robj-eohm
 
@@ -24,11 +22,6 @@ workflows:
     steps:
     - git-clone@7: {}
     - cache-pull@2: {}
-    - certificate-and-profile-installer@1:
-        inputs:
-        - certificate_url: $BITRISE_CERTIFICATE_URL # Provide the URL for distribution.p12
-        - certificate_passphrase: "123456"
-        - provisioning_profile_url: $BITRISE_PROVISIONING_PROFILE_URL # Provide the URL for profile.mobileprovision
     - recreate-user-schemes@1:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
