@@ -70,7 +70,7 @@ workflows:
           - project_path: "$BITRISE_PROJECT_PATH"
           - scheme: "$BITRISE_SCHEME"
           - distribution_method: app-store
-          - automatic_code_signing: api-key
+          # - automatic_code_signing: api-key
           - certificate_url_list: "file://./distribution.p12"
           - passphrase_list: "$CERTIFICATE_PASSWORD"
           - cache_level: none
@@ -92,10 +92,14 @@ workflows:
               cd "$BITRISE_SOURCE_DIR"
               chmod +x ./AppSealingSDK/Tools/generate_hash
               ./AppSealingSDK/Tools/generate_hash "$BITRISE_IPA_PATH"
+
     - deploy-to-itunesconnect-deliver@2:
         inputs:
           - ipa_path: "$BITRISE_IPA_PATH"
           - bundle_id: "$BITRISE_APP_BUNDLE_ID"
+          - username: "$APPLE_ID_EMAIL"             # Apple ID (이메일)
+          - app_password: "$APP_SPECIFIC_PASSWORD"  # App-specific password
+                    
     - deploy-to-bitrise-io@2: {}    
     triggers:
       push:
@@ -110,3 +114,5 @@ app:
   envs:
   - BITRISE_KEYCHAIN_PASSWORD: anything
   - CERTIFICATE_PASSWORD: 123456
+  - APPLE_ID_EMAIL: puzznic@inka.co.kr
+  - APP_SPECIFIC_PASSWORD: qbrz-hmfz-robj-eohm
