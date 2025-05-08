@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2568D81F2DCC503C002BB47E /* appsealing.lic in Resources */ = {isa = PBXBuildFile; fileRef = 2568D81C2DCC503C002BB47E /* appsealing.lic */; };
+		2568D8202DCC503C002BB47E /* AppsealingiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2568D81E2DCC503C002BB47E /* AppsealingiOS.mm */; };
+		2568D8242DCC5065002BB47E /* libStaticAppSec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2568D8232DCC5065002BB47E /* libStaticAppSec.a */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2509AB852D6413DC00DBC526 /* Bitrise_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bitrise_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2568D81C2DCC503C002BB47E /* appsealing.lic */ = {isa = PBXFileReference; lastKnownFileType = file; name = appsealing.lic; path = AppSealingSDK/Libraries/appsealing.lic; sourceTree = "<group>"; };
+		2568D81D2DCC503C002BB47E /* AppsealingiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppsealingiOS.h; path = AppSealingSDK/Libraries/AppsealingiOS.h; sourceTree = "<group>"; };
+		2568D81E2DCC503C002BB47E /* AppsealingiOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppsealingiOS.mm; path = AppSealingSDK/Libraries/AppsealingiOS.mm; sourceTree = "<group>"; };
+		2568D8212DCC503E002BB47E /* Bitrise_Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bitrise_Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		2568D8232DCC5065002BB47E /* libStaticAppSec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libStaticAppSec.a; path = AppSealingSDK/Libraries/libStaticAppSec.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2568D8242DCC5065002BB47E /* libStaticAppSec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,8 +57,13 @@
 		2509AB7C2D6413DC00DBC526 = {
 			isa = PBXGroup;
 			children = (
+				2568D81C2DCC503C002BB47E /* appsealing.lic */,
+				2568D81D2DCC503C002BB47E /* AppsealingiOS.h */,
+				2568D81E2DCC503C002BB47E /* AppsealingiOS.mm */,
 				2509AB872D6413DC00DBC526 /* Bitrise_Swift */,
 				2509AB862D6413DC00DBC526 /* Products */,
+				2568D8212DCC503E002BB47E /* Bitrise_Swift-Bridging-Header.h */,
+				2568D8222DCC5065002BB47E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +73,14 @@
 				2509AB852D6413DC00DBC526 /* Bitrise_Swift.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2568D8222DCC5065002BB47E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2568D8232DCC5065002BB47E /* libStaticAppSec.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +120,7 @@
 				TargetAttributes = {
 					2509AB842D6413DC00DBC526 = {
 						CreatedOnToolsVersion = 16.1;
+						LastSwiftMigration = 1610;
 					};
 				};
 			};
@@ -122,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2568D81F2DCC503C002BB47E /* appsealing.lic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2568D8202DCC503C002BB47E /* AppsealingiOS.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +171,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -159,12 +189,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppSealingSDK/Libraries",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.inka.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "AppSealing Wildcard Distribution Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Bitrise_Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -175,6 +211,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -191,12 +229,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppSealingSDK/Libraries",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.inka.swift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "AppSealing Wildcard Distribution Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Bitrise_Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
